@@ -44,7 +44,7 @@ Rhisat2 <- function (Fastq_file_name = "SRR1234567",
   
   trim_argument = ifelse(is.null(trim_5),"",paste0(" -5 ",trim_5," -3 ",trim_3))
   
-  mismatch_argument = ifelse(is.null(tune_Mismatch_MX),"",paste0("--mp ",tune_Mismatch_MX,",",tune_Mismatch_MN))
+  mismatch_argument = ifelse(is.null(tune_Mismatch_MX),"",paste0(" --mp ",tune_Mismatch_MX,",",tune_Mismatch_MN))
   
   output_argument = paste0(" -S ",output_name,".sam")
   
