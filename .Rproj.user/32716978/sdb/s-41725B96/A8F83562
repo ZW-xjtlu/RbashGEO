@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#'@title Generate hisat2 command in R\n#'\n#'@examples\n#'#A function to quickly check the alignment efficiencies in R\n#'Hisat2_Output_filenames <- grep(\"_hisat2.out$\",list.files(),value = T)\n#'lst_result <- lapply(Hisat2_Output_filenames,readLines)\n#'SRR_names = gsub(\"_hisat2.out$\",\"\" ,Hisat2_Output_filenames )\n#'names(lst_result) = SRR_names\n#'lst_result\n#'\n#'Not_worked <- SRR_names[sapply(lst_result,function(x) length(x) <= 1)]\n#'\n#'sapply(\n#'  Not_worked[-1],\n#'  function(x){\n#'    Rhisat2(Fastq_file_name = x,\n#'            Paired = F,\n#'            Fastq_directory = getwd()) %>% Rnohup(.,paste0(x,\"_hisat2\") )\n#'  }\n#'\n#'\n#'@export\n#'\n\nRhisat2 <- function (Fastq_file_name = \"SRR1234567\",\n                     indx_directory = \"/home/zhen/hisat2_idx/hg19/genome\",\n                     Fastq_directory = \".\", \n                     Paired = F, \n                     trim_5 = NULL, \n                     trim_3 = NULL, \n                     parallel_num = 8,\n                     Fastq_file_end = \".fastq\",\n                     output_name = Fastq_file_name,\n                     tune_Mismatch_MX = NULL,\n                     tune_Mismatch_MN = NULL) \n{\n  Fastq_directory = gsub(\"/$\",\"\",Fastq_directory)\n  if (Paired) {\n    input_argument = paste0( \" -1 \",Fastq_directory,\"/\",Fastq_file_name,\"_1\",Fastq_file_end,\" -2 \",Fastq_directory,\"/\",Fastq_file_name,\"_2\",Fastq_file_end)\n  }\n  else {\n    input_argument = paste0( \" -U \",Fastq_directory,\"/\",Fastq_file_name,Fastq_file_end)\n  }\n  \n  trim_argument = ifelse(is.null(trim_5),\"\",paste0(\" -5 \",trim_5,\" -3 \",trim_3))\n  \n  mismatch_argument = ifelse(is.null(tune_Mismatch_MX),\"\",paste0(\"--mp \",tune_Mismatch_MX,\",\",tune_Mismatch_MN))\n  \n  output_argument = paste0(\" -S \",output_name,\".sam\")\n  \n  paste0(\"hisat2 -p \",parallel_num, trim_argument, mismatch_argument,\" --no-unal -x \",indx_directory,input_argument,output_argument)\n}\n",
+    "created" : 1506405162400.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3866770379",
+    "id" : "A8F83562",
+    "lastKnownWriteTime" : 1506405365,
+    "last_content_update" : 1506405365594,
+    "path" : "~/Desktop/Research/TREW conservation/Package for bash processing/RbashGEO/R/Rhisat2.R",
+    "project_path" : "R/Rhisat2.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

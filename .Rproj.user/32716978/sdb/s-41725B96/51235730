@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#' @title submit a bash commands into the qsub...\n#' @examples\n#' arg_df <- data.frame(\n#' Fastq_file_name = rep(\"SRR1744126\",3), \n#' trim_5 = c(16,16,0),\n#' trim_3 = c(12,0,12),\n#' output_name = paste0(\"SRR1744126_\",1:3)\n#' )\n#' \n#' for(i in 1:nrow(arg_df)) {\n#' x = arg_df[i,]\n#' Rhisat2(Fastq_file_name = x$Fastq_file_name,\n#'         trim_5 = x$trim_5,\n#'         trim_3 = x$trim_3,\n#'         output_name = x$output_name,\n#'         Fastq_directory = \"/home/zhen/TREW_new_data\") %>% Rnohup(.,paste0(x$output_name,\"_hisat2\") )\n#' }\n#' \n#' @import dplyr\n#' \n#' @export\nRnohup <-\nfunction(command,output = \"X\") {\n  write(command,paste0(output,\".sh\"))\n  system(paste0(\"chmod +x ./\", paste0(output,\".sh\")))\n  system(paste0(\"nohup ./\",paste0(output,\".sh\"), ifelse(is.null(output),\"\",paste0(\" > \",output,\".out\")),\" &\"))\n}\n",
+    "created" : 1506404876714.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3831973989",
+    "id" : "51235730",
+    "lastKnownWriteTime" : 1506405036,
+    "last_content_update" : 1506405036673,
+    "path" : "~/Desktop/Research/TREW conservation/Package for bash processing/RbashGEO/R/Rnohup.R",
+    "project_path" : "R/Rnohup.R",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

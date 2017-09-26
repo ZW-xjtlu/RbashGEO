@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#' @title Check the hisat2 reports under the curent working directory.\n#' \n#' @examples\n#' Check_hisat2_reports()\n#' \n#' @export\n#' \nCheck_hisat2_reports <- function(result_tail=\"_hisat2.out\"){\n  Hisat2_Output_filenames <- grep(paste0(result_tail,\"$\"),list.files(),value = T)\n  lst_result <- lapply(Hisat2_Output_filenames,readLines)\n  SRR_names = gsub(paste0(result_tail,\"$\"),\"\" ,Hisat2_Output_filenames )\n  names(lst_result) = SRR_names\n  lst_result\n}",
+    "created" : 1506407867634.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4106551322",
+    "id" : "18F42B18",
+    "lastKnownWriteTime" : 1506407937,
+    "last_content_update" : 1506407937366,
+    "path" : "~/Desktop/Research/TREW conservation/Package for bash processing/RbashGEO/R/Check_hisat2_reports.R",
+    "project_path" : "R/Check_hisat2_reports.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#' @title Retrive data from GEO, and run a fastqc\n#' \n#' @examples\n#' sapply(paste0(\"SRR\",3066062:3066069),function(x) nohup_R(WgetQC(x),x))\n#' \n#' @export\n\nWgetQC <-\nfunction (GEO_accession = \"SRR1234567\", Paired = F) \n{\n  URL = paste(\"ftp://ftp-trace.ncbi.nih.gov/sra/sra-instant/reads/ByRun/sra/SRR\", \n              substr(GEO_accession, 1, 6), GEO_accession, paste0(GEO_accession, \n                                                                 \".sra\"), sep = \"/\")\n  Wget_command = paste(\"wget -c -t 0\", URL)\n  fastq_dump_command = paste0(\"fastq-dump \", ifelse(Paired, \n                                                    \"--split-3 \", \"\"), GEO_accession, \".sra\")\n  if (Paired) {\n    fastqc_command = paste0(\"fastqc \", GEO_accession, \"_1.fastq\", \n                            \";\", \"fastqc \", GEO_accession, \"_2.fastq\")\n  }\n  else {\n    fastqc_command = paste0(\"fastqc \", GEO_accession, \".fastq\")\n  }\n  rm_command = paste0(\"rm \", GEO_accession, \".sra\")\n  paste(Wget_command, fastq_dump_command, rm_command, fastqc_command, sep = \";\")\n}\n",
+    "created" : 1506405049260.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2986322690",
+    "id" : "1F255632",
+    "lastKnownWriteTime" : 1506405140,
+    "last_content_update" : 1506405140742,
+    "path" : "~/Desktop/Research/TREW conservation/Package for bash processing/RbashGEO/R/WgetQC.R",
+    "project_path" : "R/WgetQC.R",
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
