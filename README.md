@@ -18,7 +18,7 @@ devtools::install_github("ZhenWei10/RbashGEO")
 1.  Download and decompress many raw fastq data from GEO easily.
 2.  QC, trim, and align the fastq files with popular RNA-Seq command line tools, but with well organized output in R.
 3.  Count the alignment results with a user provided annotation by `GRanges` in R, the count is conducted by `SummarizeOverlap` function in `GenomicAlignment` package, which is transplanted from the [**HTSeq-count**](http://htseq.readthedocs.io/en/release_0.9.1/) in python.
-4.  The most significant utility of this package is to reduce the repetitive coding, and by the mean time generating well organized outcomes.
+4.  The most significant utility of this package is to reduce the repetitive bash coding and in the mean time generate compact results for downstream analysis.
 
 ### A template work flow for RNA-Seq
 
@@ -38,9 +38,9 @@ knitr::kable( Coldata_example[1:6,1:6] )
 | SRR5417013 | IP        | human-NB4      | METTL14-     | METTL14  | Single |
 | SRR5417014 | IP        | human-MonoMac6 | C            | METTL14  | Single |
 
-Only 2 collumns: `SRR_RUN` and `Lib` are essential for the complete application of this package, other information is valuable for their own good.
+Only 2 collumns: `SRR_RUN` and `Lib` are neccessary to complete the work flow of this package, but addition collumns are valuable for their own good.
 
-The design of this table is summarized from [this page](https://www.ncbi.nlm.nih.gov/Traces/study/?acc=SRP103072) on GEO.
+The design of the collumn table is summarized from [this page](https://www.ncbi.nlm.nih.gov/Traces/study/?acc=SRP103072) on GEO.
 
 -   Then, we should download them from GEO and run fastqc for quality control:
 
@@ -97,7 +97,7 @@ sapply(
 )
 ```
 
--   Finally, count them and obtain the resulting `SummarizedExperiment` object.
+-   Finally, count the reads. The reads count are stored with `SummarizedExperiment` object in R.
 
 At this step, we need to provide a `GRanges` object for annotation, in this case we use `Annotation_gr` as an example.
 
@@ -105,7 +105,11 @@ At this step, we need to provide a `GRanges` object for annotation, in this case
 Count_SRRs(Coldata_example$SRR_RUN,"./",Annotation_gr,"Example_human_SE")
 ```
 
-At last, the obtained `SummarizedExperiment` object could be easily analyzed with other QC, inference, and learning work flows. If you are interested in MeRIP data, you could use [meripQC](https://github.com/ZhenWei10/meripQC); if you are interested in the analysis of the RNA modification data, you could look [m6ALogisticModel](https://github.com/ZhenWei10/m6ALogisticModel) for more information.
+At last, the obtained `SummarizedExperiment` object could be conveniently handeled with other QC, inference, and learning work flows.
+
+If you are interested in MeRIP data, you could use [meripQC](https://github.com/ZhenWei10/meripQC);
+
+if you are interested in the analysis of the RNA modification data, you could look [m6ALogisticModel](https://github.com/ZhenWei10/m6ALogisticModel) for more information.
 
 ``` r
 sessionInfo()
