@@ -25,15 +25,6 @@ devtools::install_github("ZhenWei10/RbashGEO")
 
 ``` r
 library(RbashGEO)
-```
-
-    ## Warning: replacing previous import 'GenomicAlignments::first' by
-    ## 'dplyr::first' when loading 'RbashGEO'
-
-    ## Warning: replacing previous import 'GenomicAlignments::last' by
-    ## 'dplyr::last' when loading 'RbashGEO'
-
-``` r
 knitr::kable( Coldata_example[1:6,1:6] )
 ```
 
@@ -137,27 +128,22 @@ sessionInfo()
     ## [1] RbashGEO_1.0
     ## 
     ## loaded via a namespace (and not attached):
-    ##  [1] Rcpp_0.12.14               highr_0.6                 
-    ##  [3] pillar_1.0.1               bindr_0.1                 
-    ##  [5] compiler_3.4.2             GenomeInfoDb_1.14.0       
-    ##  [7] XVector_0.18.0             bitops_1.0-6              
-    ##  [9] tools_3.4.2                zlibbioc_1.24.0           
-    ## [11] digest_0.6.13              tibble_1.4.1              
-    ## [13] evaluate_0.10.1            lattice_0.20-35           
-    ## [15] pkgconfig_2.0.1            rlang_0.1.6               
-    ## [17] Matrix_1.2-12              DelayedArray_0.4.1        
-    ## [19] yaml_2.1.16                parallel_3.4.2            
-    ## [21] bindrcpp_0.2               GenomeInfoDbData_1.0.0    
-    ## [23] stringr_1.2.0              dplyr_0.7.4               
-    ## [25] knitr_1.18                 Biostrings_2.46.0         
-    ## [27] S4Vectors_0.16.0           IRanges_2.12.0            
-    ## [29] stats4_3.4.2               rprojroot_1.3-2           
-    ## [31] grid_3.4.2                 glue_1.2.0                
-    ## [33] Biobase_2.38.0             R6_2.2.2                  
-    ## [35] BiocParallel_1.12.0        rmarkdown_1.8             
-    ## [37] magrittr_1.5               backports_1.1.2           
-    ## [39] Rsamtools_1.30.0           htmltools_0.3.6           
-    ## [41] matrixStats_0.52.2         GenomicAlignments_1.14.1  
-    ## [43] BiocGenerics_0.24.0        GenomicRanges_1.30.1      
-    ## [45] assertthat_0.2.0           SummarizedExperiment_1.8.1
-    ## [47] stringi_1.1.6              RCurl_1.95-4.10
+    ##  [1] Rcpp_0.12.14               XVector_0.18.0            
+    ##  [3] knitr_1.18                 magrittr_1.5              
+    ##  [5] zlibbioc_1.24.0            GenomicRanges_1.30.1      
+    ##  [7] BiocGenerics_0.24.0        GenomicAlignments_1.14.1  
+    ##  [9] IRanges_2.12.0             BiocParallel_1.12.0       
+    ## [11] lattice_0.20-35            highr_0.6                 
+    ## [13] stringr_1.2.0              GenomeInfoDb_1.14.0       
+    ## [15] tools_3.4.2                grid_3.4.2                
+    ## [17] SummarizedExperiment_1.8.1 parallel_3.4.2            
+    ## [19] Biobase_2.38.0             matrixStats_0.52.2        
+    ## [21] htmltools_0.3.6            yaml_2.1.16               
+    ## [23] rprojroot_1.3-2            digest_0.6.13             
+    ## [25] Matrix_1.2-12              GenomeInfoDbData_1.0.0    
+    ## [27] S4Vectors_0.16.0           bitops_1.0-6              
+    ## [29] RCurl_1.95-4.10            evaluate_0.10.1           
+    ## [31] rmarkdown_1.8              DelayedArray_0.4.1        
+    ## [33] stringi_1.1.6              compiler_3.4.2            
+    ## [35] Rsamtools_1.30.0           Biostrings_2.46.0         
+    ## [37] backports_1.1.2            stats4_3.4.2

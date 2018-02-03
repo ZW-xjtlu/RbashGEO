@@ -16,7 +16,6 @@
 #'         Fastq_directory = "/home/zhen/TREW_new_data") %>% Rnohup(.,paste0(x$output_name,"_trim") )
 #' }
 #' 
-#' @import dplyr
 #' 
 #' @export
 #' 

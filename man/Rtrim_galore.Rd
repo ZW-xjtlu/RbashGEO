@@ -25,4 +25,5 @@ Rhisat2(Fastq_file_name = x$Fastq_file_name,
         Fastq_directory = "/home/zhen/TREW_new_data") \%>\% Rnohup(.,paste0(x$output_name,"_trim") )
 }
 
+
 }
