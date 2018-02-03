@@ -1,11 +1,17 @@
 Package: RbashGEO
 Type: Package
-Title: What the package does (short line)
+Title: Populate bash command of RNA-Seq raw data processing in R.
 Version: 1.0
 Date: 2017-09-26
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
+Author: Zhen Wei
+Maintainer: Zhen Wei <Zhen.Wei@xjtlu.edu.cn>
+Description: Populate bash command of RNA-Seq raw data processing in R.
 License: What license is it under?
-Imports: dplyr
+Imports: dplyr,
+         GenomicRanges,
+         GenomicAlignments,
+         Rsamtools,
+         BiocParallel
+Encoding: UTF-8
+LazyData: true
 RoxygenNote: 6.0.1

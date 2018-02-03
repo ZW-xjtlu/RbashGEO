@@ -8,34 +8,49 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ###The purpose of the package RbashGEO
-- Help users to populate the NGS raw data processing commands in bash with little code.
+- Help users to populate the RNA-Seq raw data processing commands in bash with little code.
 
-- Users only need to provide a **collumn data**, that means a table record the design and names of the fastq files, they could be the **SRR RUN** ids on GEO.
+- Users only need to provide a **collumn data**, that means a table recording the design and names of the fastq files; The sample ids could be the **RUN IDs** from [**GEO**](https://www.ncbi.nlm.nih.gov/geo/).
 
-###In stall it with the command below
+###Install it with the command below
 
-```{r}
+```{r,eval=FALSE}
 devtools::install_github("ZhenWei10/RbashGEO")
 ```
 
 - The functions of this package can help users to:
-1. Download and decompress raw fastq data from NCBI.
+1. Download and decompress raw fastq data automatically from NCBI.
 2. QC, trim, and align the fastq files with popular RNA-Seq command line tools.
-3. Count the alignment results with a user provided annotation by `GRanges` in R, the count is conducted by `SummarizeOverlap` function in `GenomicAlignment` package, which is transplanted from the **HTSeq-count** in python.
+3. Count the alignment results with a user provided annotation by `GRanges` in R, the count is conducted by `SummarizeOverlap` function in `GenomicAlignment` package, which is transplanted from the [**HTSeq-count**](http://htseq.readthedocs.io/en/release_0.9.1/) in python.
 
 ###A standardized work flow 
 
-- First we need to prepare a `Coldata`.
+-  First, we need to prepare a **collumn data** like the example below.
 ```{r}
 library(RbashGEO)
-Coldata_example
+knitr::kable( Coldata_example[1:6,1:6] )
 ```
 
-Then we align them
-```{r}
+Only 2 collumns: `SRR_RUN` and `Lib` are essential for the complete application of this package, other information is valuable for their own good. 
+
+The design of this table is summarized from [this page](https://www.ncbi.nlm.nih.gov/Traces/study/?acc=SRP103072) on GEO.
+
+<hr/>
+
+-  Then, we should download them from GEO and run fastqc for quality control:
+
+```{r,eval=FALSE}
+library(RbashGEO)
+mapply(function(x,y) Rnohup(WgetQC(x,y),x), Coldata_example$SRR_RUN,Coldata_example$Lib == "Paired")
+```
+
+<hr/>
+
+-  Next, we should align them with hisat2 (you should first check the fastqc reports, if they are not OK, you should use `Rtrim_galore` before alignment):
+
+```{r,eval = FALSE}
 library(RbashGEO)
 library(dplyr)
-Coldata_new <- read.csv("./Coldata_M14new.csv")
 
 mapply(
  function(x,y){
@@ -43,8 +58,62 @@ mapply(
            Paired = y,
            parallel_num = 1,
            Fastq_directory = getwd()) %>% Rnohup(.,paste0(x,"_hisat2"))}, 
- Coldata_new$SRR_RUN,
- (Coldata_new$Lib == "Paired")
+ Coldata_example$SRR_RUN,
+ (Coldata_example$Lib == "Paired")
 )
+```
+
+<hr/>
+
+-  Check the alignment result in R all together with this command.
+
+```{r,eval = F}
+RbashGEO::Check_hisat2_reports()
+```
+
+You should see something like below.
+
+> RbashGEO::Check_hisat2_reports()\
+$SRR5417009\
+[1] "34270423 reads; of these:"\                 
+[2] "  34270423 (100.00%) were unpaired; of these:"\
+[3] "    1494778 (4.36%) aligned 0 times"\          
+[4] "    18096777 (52.81%) aligned exactly 1 time"\
+[5] "    14678868 (42.83%) aligned >1 times"\    
+[6] "95.64% overall alignment rate"\              
+...
+
+<hr/>
+
+- Then, convert the sam into bam with some desired filters on [SAM flags](https://broadinstitute.github.io/picard/explain-flags.html).
+
+```{r,eval=FALSE}
+library(RbashGEO)
+
+sapply(
+  Coldata_example$SRR_RUN,
+  function(x) Rnohup(
+  Rsamtools_view(x,sam_end = ".sam",parallel_num = 1,flag_filter = 2820),
+  x)
+)
+```
+
+
+<hr/>
+
+- Finally, count them and obtain the resulting `SummarizedExperiment` object.
+
+At this step, we need to provide a `GRanges` object for annotation, in this case we use `Annotation_gr` as an example.
+
+```{r,eval=FALSE}
+Count_SRRs(Coldata_example$SRR_RUN,"./",Annotation_gr,"Example_human_SE")
+```
+
+<hr/>
+
+At last, the obtained `SummarizedExperiment` object could be easily analyzed with other QC, inference, and learning work flows. If you are interested in MeRIP data, you could use [meripQC](https://github.com/ZhenWei10/meripQC); if you are interested in the analysis of the RNA modification data, you could look [m6ALogisticModel](https://github.com/ZhenWei10/m6ALogisticModel) for more information.
+
+```{r}
+sessionInfo()
 ```
 
