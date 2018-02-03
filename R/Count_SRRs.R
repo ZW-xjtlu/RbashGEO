@@ -34,7 +34,7 @@ Count_SRRs <- function(SRRs,bam_dir = "./",reference_annotation,save_title,paire
   se <- summarizeOverlaps(reference_annotation,
                           bam.list,
                           mode = Mode,
-                          Inter.feature = FALSE,
+                          inter.feature = Inter.feature,
                           singleEnd =!paired,
                           ignore.strand = Ignore.strand,
                           fragments = paired)
