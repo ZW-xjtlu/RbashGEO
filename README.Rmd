@@ -8,9 +8,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ###The purpose of the package RbashGEO
-- Help users to populate the RNA-Seq raw data processing commands in bash with little code.
+- Help users to populate the RNA-Seq raw data processing commands in bash with little code, i.e. it can make you life easier if you frequently dowload and align RNA-Seq data from [**GEO**](https://www.ncbi.nlm.nih.gov/geo/).
 
-- Users only need to provide a **collumn data**, that means a table recording the design and names of the fastq files; The sample ids could be the **RUN IDs** from [**GEO**](https://www.ncbi.nlm.nih.gov/geo/).
+- Users only need to provide a **collumn data**, that means a table recording the design and names of the fastq files; The sample ids could directly be the **RUN IDs** from GEO.
 
 ###Install it with the command below
 
@@ -45,7 +45,7 @@ mapply(function(x,y) Rnohup(WgetQC(x,y),x), Coldata_example$SRR_RUN,Coldata_exam
 ```
 
 
--  Next, we should align them with [**hisat2**](https://ccb.jhu.edu/software/hisat2/index.shtml) (you should first check the fastqc reports, if they are not OK, you should use `Rtrim_galore` before alignment):
+-  Next, we should align them with [**hisat2**](https://ccb.jhu.edu/software/hisat2/index.shtml) (you should first check the fastqc reports, if they are not OK, you should use `Rtrim_galore` before alignment.):
 
 ```{r,eval = FALSE}
 library(RbashGEO)
