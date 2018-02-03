@@ -15,13 +15,14 @@ devtools::install_github("ZhenWei10/RbashGEO")
 
 -   The functions of this package can help users to:
 
-1.  Download and decompress raw fastq data automatically from NCBI.
-2.  QC, trim, and align the fastq files with popular RNA-Seq command line tools.
+1.  Download and decompress many raw fastq data from GEO easily.
+2.  QC, trim, and align the fastq files with popular RNA-Seq command line tools, but with well organized output in R.
 3.  Count the alignment results with a user provided annotation by `GRanges` in R, the count is conducted by `SummarizeOverlap` function in `GenomicAlignment` package, which is transplanted from the [**HTSeq-count**](http://htseq.readthedocs.io/en/release_0.9.1/) in python.
+4.  The most significant utility of this package is to reduce the repetitive coding, and by the mean time generating well organized outcomes.
 
 ### A template work flow for RNA-Seq
 
--   First, we need to prepare a **collumn data** like the example below.
+-   First, we need to prepare a **collumn data**, such as the example below.
 
 ``` r
 library(RbashGEO)
@@ -65,13 +66,13 @@ mapply(
 )
 ```
 
--   Check the alignment result in R all together with this command.
+-   Check the organized alignment result in R all together with this command.
 
 ``` r
 RbashGEO::Check_hisat2_reports()
 ```
 
-You should see something like below.
+You should see a list as the following.
 
 > RbashGEO::Check\_hisat2\_reports()
 > $SRR5417009
