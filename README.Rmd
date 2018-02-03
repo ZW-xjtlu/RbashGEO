@@ -25,7 +25,7 @@ devtools::install_github("ZhenWei10/RbashGEO")
 
 ###A template work flow for RNA-Seq
 
--  First, we need to prepare a **collumn data** like the example below.
+-  First, we need to prepare a **collumn data**, such as the example below.
 ```{r}
 library(RbashGEO)
 knitr::kable( Coldata_example[1:6,1:6] )
@@ -69,7 +69,7 @@ mapply(
 RbashGEO::Check_hisat2_reports()
 ```
 
-You should see something like below.
+You should see something as following.
 
 > RbashGEO::Check_hisat2_reports()\
 $SRR5417009\

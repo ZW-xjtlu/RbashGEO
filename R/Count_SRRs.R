@@ -12,13 +12,31 @@
 #' 
 #' Count_SRRs(SRR_RUN_human_SE,"./",Annotation_gr,F,"Example_human_SE")
 #' 
+#' 
+#' ###An example to handel a long list of bam files with either single end or paired end sequencing library
+#' 
+#' library(RbashGEO)
+#'
+#' Annot_GR <- GenomicRanges::reduce( readRDS("SVM_RMBase.rds") ,min.gapwidth=0L) 
+#' Coldata_df <- read.csv("Coldata_target_human.csv")
+
+
+#' Count_seperately <- function(SRR_RUN,BAM_dir,Annot_gr,title){
+#'  if(sum(!paste0(SRR_RUN,".bam") %in% grep(".bam", list.files(BAM_dir) , value = T)) > 0) {stop("Incomplete bam files, please check again.")}
+#'  SRR_RUN_SE <- as.character( SRR_RUN )[Coldata_df$Lib == "Single"]
+#'  SRR_RUN_PE <- as.character( SRR_RUN )[Coldata_df$Lib == "Paired"]
+#' Count_SRRs(SRR_RUN_SE,BAM_dir,Annot_gr,paste0(title,"_SE"),F)
+#'  Count_SRRs(SRR_RUN_PE,BAM_dir,Annot_gr,paste0(title,"_PE"),T)
+#'}
+#'Count_seperately(Coldata_df$SRR_RUN,"/home/zhen/TREW_cons_bams",Annot_GR,"SVM_RMBase")
+#' 
+#' 
 #' @seealso \code{\link{Rsamtools_view}}
 #' 
 #' @import GenomicAlignments
 #' @import Rsamtools
 #' @import BiocParallel
 #' @export
-
 
 Count_SRRs <- function(SRRs,bam_dir = "./",reference_annotation,save_title,paired = F,Mode = "Union",Ignore.strand = T,Inter.feature = F) {
   
