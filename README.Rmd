@@ -22,7 +22,7 @@ devtools::install_github("ZhenWei10/RbashGEO")
 1. Download and decompress many raw fastq data from GEO easily.
 2. QC, trim, and align the fastq files with popular RNA-Seq command line tools, but with well organized output in R.
 3. Count the alignment results with a user provided annotation by `GRanges` in R, the count is conducted by `SummarizeOverlap` function in `GenomicAlignment` package, which is transplanted from the [**HTSeq-count**](http://htseq.readthedocs.io/en/release_0.9.1/) in python.
-4. The most significant utility of this package is to reduce the repetitive coding, also it can generate well organized outcomes.
+4. The most significant utility of this package is to reduce the repetitive coding, also it can generate compact results for downstream analysis.
 
 ###A template work flow for RNA-Seq
 
@@ -103,7 +103,11 @@ At this step, we need to provide a `GRanges` object for annotation, in this case
 Count_SRRs(Coldata_example$SRR_RUN,"./",Annotation_gr,"Example_human_SE")
 ```
 
-At last, the obtained `SummarizedExperiment` object could be easily analyzed with other QC, inference, and learning work flows. If you are interested in MeRIP data, you could use [meripQC](https://github.com/ZhenWei10/meripQC); if you are interested in the analysis of the RNA modification data, you could look [m6ALogisticModel](https://github.com/ZhenWei10/m6ALogisticModel) for more information.
+At last, the obtained `SummarizedExperiment` object could be easily analyzed with other QC, inference, and learning work flows.
+
+If you are interested in MeRIP data, you could use [meripQC](https://github.com/ZhenWei10/meripQC); 
+
+if you are interested in the analysis of the RNA modification data, you could look [m6ALogisticModel](https://github.com/ZhenWei10/m6ALogisticModel) for more information.
 
 ```{r}
 sessionInfo()
