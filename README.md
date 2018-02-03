@@ -50,7 +50,6 @@ Only 2 collumns: `SRR_RUN` and `Lib` are essential for the complete application 
 
 The design of this table is summarized from [this page](https://www.ncbi.nlm.nih.gov/Traces/study/?acc=SRP103072) on GEO.
 
-<hr/>
 -   Then, we should download them from GEO and run fastqc for quality control:
 
 ``` r
