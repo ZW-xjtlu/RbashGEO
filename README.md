@@ -48,7 +48,7 @@ library(RbashGEO)
 mapply(function(x,y) Rnohup(WgetQC(x,y),x), Coldata_example$SRR_RUN,Coldata_example$Lib == "Paired")
 ```
 
--   Next, we should align them with hisat2 (you should first check the fastqc reports, if they are not OK, you should use `Rtrim_galore` before alignment):
+-   Next, we should align them with [**hisat2**](https://ccb.jhu.edu/software/hisat2/index.shtml) (you should first check the fastqc reports, if they are not OK, you should use `Rtrim_galore` before alignment):
 
 ``` r
 library(RbashGEO)
