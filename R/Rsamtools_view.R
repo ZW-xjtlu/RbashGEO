@@ -12,7 +12,10 @@
 #'@export
 #'
 #'
-Rsamtools_view <- function(sam_name,sam_directory = ".",sam_end = ".sam",parallel_num = 8,flag_filter = 2816) {
-  sam_directory = gsub("/$","",sam_directory)
-  paste0("samtools view -@ ",parallel_num," -F ",flag_filter," -q 30 -Sb ",sam_directory,"/",sam_name,sam_end," -o ",sam_directory,"/",sam_name,".bam")
+
+Rsamtools_view = function(sam_name, sam_directory = ".", sam_end = ".sam", parallel_num = 8,flag_filter = 2816) {
+  sam_directory = gsub("/$", "", sam_directory)
+  paste0("samtools view -@ ", parallel_num, " -F ", flag_filter, 
+         " -q 30 -Sb ", sam_directory, "/", sam_name, sam_end, 
+         " -o ", sam_directory, "/", sam_name, ".bam")
 }

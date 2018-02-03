@@ -20,7 +20,6 @@
 #' 
 #' @export
 #' 
-#' trim_galore --quality 20 --phred33 --fastqc --paired --clip_R1 0 --clip_R2 0 --three_prime_clip_R1 0 --three_prime_clip_R2 0 SRR1234567_1.fq SRR1234567_2.fq
 
 Rtrim_galore <-
   function(GEO_accession = "SRR1234567", 

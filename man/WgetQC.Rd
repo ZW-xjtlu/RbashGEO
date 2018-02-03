@@ -7,6 +7,21 @@
 WgetQC(GEO_accession = "SRR1234567", Paired = F)
 }
 \examples{
-sapply(paste0("SRR",3066062:3066069),function(x) nohup_R(WgetQC(x),x))
+library(RbashGEO)
+library(dplyr)
+Coldata_new <- read.csv("./Coldata_new.csv") #See attached collumn data example in Coldata_example
 
+mapply(
+  function(x,y){
+    Rhisat2(Fastq_file_name = x,
+            Paired = y,
+            parallel_num = 1,
+            Fastq_directory = getwd()) \%>\% Rnohup(.,paste0(x,"_hisat2"))}, 
+  Coldata_new$SRR_RUN,
+  (Coldata_new$Lib == "Paired")
+)
+
+}
+\seealso{
+\code{\link{Rhisat2}}, \code{\link{Rtrim_galore}} ,and \code{\link{Coldata_example}}
 }

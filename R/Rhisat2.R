@@ -1,22 +1,21 @@
 #'@title Generate hisat2 command in R
 #'
 #'@examples
-#'#A function to quickly check the alignment efficiencies in R
-#'Hisat2_Output_filenames <- grep("_hisat2.out$",list.files(),value = T)
-#'lst_result <- lapply(Hisat2_Output_filenames,readLines)
-#'SRR_names = gsub("_hisat2.out$","" ,Hisat2_Output_filenames )
-#'names(lst_result) = SRR_names
-#'lst_result
+#'library(RbashGEO)
+#'library(dplyr)
+#'Coldata_new <- read.csv("./Coldata_M14new.csv")
 #'
-#'Not_worked <- SRR_names[sapply(lst_result,function(x) length(x) <= 1)]
-#'
-#'sapply(
-#'  Not_worked[-1],
-#'  function(x){
+#'mapply(
+#'  function(x,y){
 #'    Rhisat2(Fastq_file_name = x,
-#'            Paired = F,
-#'            Fastq_directory = getwd()) %>% Rnohup(.,paste0(x,"_hisat2") )
-#'  }
+#'            Paired = y,
+#'            parallel_num = 1,
+#'            Fastq_directory = getwd()) %>% Rnohup(.,paste0(x,"_hisat2"))}, 
+#'  Coldata_new$SRR_RUN,
+#'  (Coldata_new$Lib == "Paired")
+#')
+#'
+#'@seealso \code{\link{Check_hisat2_reports}}
 #'
 #'
 #'@export
