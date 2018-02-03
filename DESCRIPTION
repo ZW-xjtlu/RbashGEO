@@ -7,8 +7,7 @@ Author: Zhen Wei
 Maintainer: Zhen Wei <Zhen.Wei@xjtlu.edu.cn>
 Description: Populate bash command of RNA-Seq raw data processing in R.
 License: What license is it under?
-Imports: dplyr,
-         GenomicRanges,
+Imports: GenomicRanges,
          GenomicAlignments,
          Rsamtools,
          BiocParallel
