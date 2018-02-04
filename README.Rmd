@@ -8,7 +8,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ###The purpose of the package RbashGEO
-- Help users to populate the RNA-Seq raw data processing commands in bash with little code, i.e. it can make you life easier if you frequently dowload and align RNA-Seq data from [**GEO**](https://www.ncbi.nlm.nih.gov/geo/).
+- Help users to populate the RNA-Seq raw data processing commands in bash with little code, i.e. it can make your life easier if you frequently dowload and align RNA-Seq data from [**GEO**](https://www.ncbi.nlm.nih.gov/geo/).
 
 - Users only need to provide a **collumn data**, that means a table recording the design and names of the fastq files; The sample ids could directly be the **RUN IDs** from GEO.
 
