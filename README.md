@@ -66,23 +66,23 @@ mapply(
 )
 ```
 
--   Check the organized alignment result in R all together with this command.
+-   Check the organized alignment reports in R all together with this command.
 
 ``` r
-RbashGEO::Check_hisat2_reports()
+hisat2_report <- RbashGEO::Check_hisat2_reports()
+knitr::kable(hisat2_report[1:6,-1*c(2,3,4)])
 ```
 
-You should see a list as the following.
+| Sample\_ID | Uniquely\_alignment | Multiple\_alignment | Mapping\_efficiency |
+|:-----------|:--------------------|:--------------------|:--------------------|
+| SRR5417009 | 18096777 (52.81%)   | 14678868 (42.83%)   | 95.64%              |
+| SRR5417010 | 11359024 (44.98%)   | 12732204 (50.42%)   | 95.40%              |
+| SRR5417011 | 13108383 (58.39%)   | 6646745 (29.61%)    | 87.99%              |
+| SRR5417012 | 10650346 (45.12%)   | 5640761 (23.90%)    | 69.02%              |
+| SRR5417013 | 7925819 (36.53%)    | 4123070 (19.00%)    | 55.53%              |
+| SRR5417014 | 11652714 (47.75%)   | 7618818 (31.22%)    | 78.97%              |
 
-> RbashGEO::Check\_hisat2\_reports()
-> $SRR5417009
-> \[1\] "34270423 reads; of these:" 
-> \[2\] " 34270423 (100.00%) were unpaired; of these:"
-> \[3\] " 1494778 (4.36%) aligned 0 times" 
-> \[4\] " 18096777 (52.81%) aligned exactly 1 time"
-> \[5\] " 14678868 (42.83%) aligned &gt;1 times" 
-> \[6\] "95.64% overall alignment rate" 
-> ...
+You should see a `data.frame` with summarized outputs of hisat2.
 
 -   Then, convert the sam into bam with some desired filters on [SAM flags](https://broadinstitute.github.io/picard/explain-flags.html).
 

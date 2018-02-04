@@ -4,7 +4,12 @@
 \alias{Check_hisat2_reports}
 \title{Check the hisat2 reports under the curent working directory.}
 \usage{
-Check_hisat2_reports(result_tail = "_hisat2.out")
+Check_hisat2_reports(result_tail = "_hisat2.out", Format = T)
+}
+\arguments{
+\item{result_tail}{define what the tail of the hisat2 output is, default is "_hisat2.out".}
+
+\item{Format}{whether format the returned output into a \code{data.frame}, default is TRUE.}
 }
 \examples{
 Check_hisat2_reports()
