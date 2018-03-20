@@ -9,6 +9,7 @@ Description: Populate bash command of RNA-Seq raw data processing in R.
 License: What license is it under?
 Imports: GenomicRanges,
          GenomicAlignments,
+         SummarizedExperiment,
          Rsamtools,
          BiocParallel
 Encoding: UTF-8
