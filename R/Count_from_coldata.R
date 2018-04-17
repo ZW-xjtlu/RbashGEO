@@ -6,7 +6,7 @@
 #' 
 #' 2. a collumn named "Lib". The entries should be either "Single" or "Paired"
 #' 
-#' @return a \code{\link{SummarizedExperiment}} object saved under current working directory with well defined colData and rowRanges.
+#' @return The function will output a \code{\link{SummarizedExperiment}} object well defined colData and rowRanges., it will be saved under current working directory.
 #' 
 #' @details Under this version, the function is designed to support the count over many (>100) fastq files with both single and paired end data.
 #' If you have only single or paired end data, please use \code{\link{Count_SRRs}}.
