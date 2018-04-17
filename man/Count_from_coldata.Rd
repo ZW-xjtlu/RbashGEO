@@ -23,7 +23,7 @@ Count_from_coldata(Coldata, Annot_gr, BAM_dir, title = "test",
 \item{bin_zize}{the width of the bin used for count, default is 100.}
 }
 \value{
-a \code{\link{SummarizedExperiment}} object saved under current working directory with well defined colData and rowRanges.
+The function will output a \code{\link{SummarizedExperiment}} object well defined colData and rowRanges., it will be saved under current working directory.
 }
 \details{
 Under this version, the function is designed to support the count over many (>100) fastq files with both single and paired end data.
